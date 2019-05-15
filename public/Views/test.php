@@ -120,6 +120,9 @@
                         <div class="card-reveal">
                             <span class="card-title dark-text text-darken-6" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">langue francée<i class="material-icons right">close</i></span>
                             <p><!--grand description-->
+                            <blockquote>
+                                This is an example quotation that uses the blockquote tag.
+                            </blockquote>
                                 Under the Constitution of France, French has been the official language of the Republic since 1992[20] (although the ordinance of Villers-Cotterêts made it mandatory for legal documents in 1539).
                                 France mandates the use of French in official government publications, public education except in specific cases (though these dispositions[clarification needed] are often ignored) and legal contracts; advertisements must bear a translation of foreign words.
                             </p>
