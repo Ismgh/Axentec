@@ -1,5 +1,7 @@
 <html>
     <head>
+        <!--french caractéres-->
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
         <!--Compiled and minified CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <!--le fichier CSS-->
@@ -23,7 +25,7 @@
                         <i class="material-icons" style="font-size: 25px;">home</i>
                     </a></li>
                     <li><a class="tooltipped" href="travaille_stage" data-position="bottom"  data-tooltip="stage/travaille"><!--offres de satages/travaille-->
-                        <i class="material-icons" style="font-size: 25px;">work</i>
+                        <i class="material-icons" style="font-size: 25px;">business_center</i>
                     </a></li>
                     <li><a class="tooltipped dropdown-trigger"  data-position="bottom" data-target="type_de_formation_desktop"  data-tooltip="type de formation"><!--recherche par catégorie-->
                         <i class="material-icons" style="font-size: 25px;">widgets</i>
@@ -47,9 +49,19 @@
             </div>
         </nav><!--/navbar desktop-->
         <ul id="type_de_formation_desktop" class="dropdown-content"><!--les types de formations disponibles dans le centre(desktop)-->
-            <li><a href="recherche?t=..." class="tooltipped"  data-position="right"  data-tooltip="..."><!--lien de la recherche-->
-            <i class="material-icons" style="font-size: 25px; color: black;">...</i><!--icone de cathegorie-->          
+            <?php 
+                $cathegories=$_POST["cathegories"];
+                $cathegories = $cathegories->fetchAll();
+                foreach ($cathegories as $row) 
+                {
+            ?>
+            <li><a href="recherche?t=<?php echo $row["id_cathegorie"];?>" class="tooltipped"  data-position="right"  data-tooltip="<?php echo $row["id_cathegorie"];?>"><!--lien de la recherche-->
+            <i class="material-icons" style="font-size: 25px; color: black;"><?php echo $row["image_cathegorie"];?></i><!--icone de cathegorie-->          
+            ¤
             </a></li>
+            <?php
+                }
+            ?>
         </ul>
         <ul class="sidenav" id="mobile-demo"><!--navbar mobile-->
             <li><a href="index.php"><!--home-->
@@ -75,26 +87,39 @@
             <li style="margin-left:33px;"><!--search bar-->
                 <form action="recherche" methode="get">
                     <div class="input-field">
-                        <i class="material-icons prefix">recherche</i>
+                        <i class="material-icons prefix">search</i>
                         <input name="s" id="icon_prefix" type="text" placeholder="faire une recherche">
                     </div>
                 </form>
             </li><!--/search bar-->
         </ul><!--/navbar mobile-->
         <ul id="type_de_formation_mobile" class="dropdown-content"><!--les types de formations disponibles dans le centre(mobile)-->
-            <li><a href="recherche?t=..."><!--le lien de recherche-->
-                <i class="material-icons" style="font-size: 25px; color: black;">...</i><!--icon de cathegorie-->
-                ...<!--le nom de la categorie-->
+            <?php
+                foreach ($cathegories as $row) 
+                {
+            ?>
+            <li><a href="recherche?t=<?php echo $row["id_cathegorie"];?>"><!--le lien de recherche-->
+                <i class="material-icons" style="font-size: 25px; color: black;"><?php echo $row["image_cathegorie"];?></i><!--icon de cathegorie-->
+                <?php echo $row["id_cathegorie"];?><!--le nom de la categorie-->
             </a></li>
+            <?php
+                }
+            ?>
         </ul>  
         <div class="container">
             <div class="row">
+            <?php
+                /* la boucle sur les formation*/
+                $formations=$_POST["formations"];
+                while($row=$formations->fetch())
+                {
+            ?>
                 <div class="col l4 m6 s12"><!--formation-->
                     <div class="card" style="box-shadow : gray 1px 1px 15px;"><!--card-->
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img src="src/pics/programation.jpg"><!--image principale-->
-                            <span class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><!--le titre-->
-                                ...
+                            <img src="<?php echo $row["image_formation"];?>"><!--image principale-->
+                            <span class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-shadow:black 1px 1px 13px;"><!--le titre-->
+                                <?php echo $row["titre_formation"];?>
                             </span>
                         </div>
                         <div class="card-content">
@@ -102,25 +127,42 @@
                             <a class=" waves-effect waves-gray white tooltipped  right" data-position="left"  data-tooltip="voir plus d'informations"><i class="material-icons">more_vert</i></a>
                             </span>
                             <p><!--petite description-->
-                                ...
+                                <?php echo $row["petit_description_formation"];?>
                             </p>
                         </div>
                         <div class="card-action"><!--bouton d'inscription-->
-                            <a href="s_inscrire?formation=" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
-                            <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> ... % <i class="material-icons">trending_down</i></a><!--promotion-->
+                            <a href="s_inscrire?formation=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
+                            <?php 
+                                if ($row["promotion_formation"]!=0)
+                                {//afficher la promotion si elle existe
+                            ?>
+                            <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> <?php echo $row["promotion_formation"];?> % <i class="material-icons">trending_down</i></a><!--promotion-->
+                            <?php
+                                }//fin de if promotion
+                            ?>
                         </div>
                         <div class="card-reveal">
-                            <span class="card-title dark-text text-darken-6" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">...<i class="material-icons right">close</i></span><!--titre-->
+                            <span class="card-title dark-text text-darken-6" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><?php echo $row["titre_formation"];?><i class="material-icons right">close</i></span><!--titre-->
                             <p><!--grand description-->
-                                ...
+                                <?php echo $row["grande_description_formation"];?>
                             </p>
-                            <div class="card-action">
-                                <a class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
-                                <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> ... % <i class="material-icons">trending_down</i></a><!--promotion-->
-                            </div><!--bouton d'inscription (.card-action)-->
+                            <div class="card-action"><!--bouton d'inscription-->
+                                <a href="s_inscrire?formation=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
+                                <?php 
+                                    if ($row["promotion_formation"]!=0)
+                                    {//afficher la promotion si elle existe
+                                ?>
+                                <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> <?php echo $row["promotion_formation"];?> % <i class="material-icons">trending_down</i></a><!--promotion-->
+                                <?php
+                                    }//fin de if promotion
+                                ?>
+                            </div>
                         </div>
                     </div><!--/card-->
-                </div><!--.col (une formation) /-->      
+                </div><!--.col (une formation) /--> 
+            <?php
+                }//fin de la boucle des formations
+            ?>     
             </div><!--.row/--> 
         </div><!--.container/-->
         <footer class="page-footer orange" style="width:100%;"><!--footer-->
@@ -142,8 +184,8 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">des liens utiles</h5>
                 <ul>
-                <li><a href="contact" style="color:black;">¤contacter nous et avoir notre address.</a></li><br>
-                <li><a href="travaille_stage" style="color:black;">¤vous voulez faire un stage où bien travailler avec nous.</a></li>
+                <li><a href="contact" style="color:black;">$-contacter nous et avoir notre address.</a></li>
+                <li><a href="travaille_stage" style="color:black;">$-vous voulez faire un stage où bien travailler avec nous.</a></li>
                 </ul>
               </div>
             </div>

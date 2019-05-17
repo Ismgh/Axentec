@@ -6,6 +6,7 @@
     });
     Route::set('test',function()
     {// tester quelque chose 
-        Index::View('test');    
+        Test::traitement();
+        Test::View('test');    
     });
 ?>
