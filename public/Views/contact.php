@@ -107,61 +107,77 @@
         </ul>  
         <div class="container">
             <div class="row">
-            <?php
-                /* la boucle sur les formation*/
-                $formations=$_POST["formations"];
-                while($row=$formations->fetch())
-                {
-            ?>
-                <div class="col l4 m6 s12"><!--formation-->
-                    <div class="card" style="box-shadow : gray 1px 1px 15px;"><!--card-->
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img src="<?php echo $row["image_formation"];?>"><!--image principale-->
-                            <span class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-shadow:black 1px 1px 13px;"><!--le titre-->
-                                <?php echo $row["titre_formation"];?>
-                            </span>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">
-                            <a class=" waves-effect waves-gray white tooltipped  right" data-position="left"  data-tooltip="voir plus d'informations"><i class="material-icons">more_vert</i></a>
-                            </span>
-                            <p><!--petite description-->
-                                <?php echo $row["petit_description_formation"];?>
-                            </p>
-                        </div>
-                        <div class="card-action"><!--bouton d'inscription-->
-                            <a href="s_inscrire?formation=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
-                            <?php 
-                                if ($row["promotion_formation"]!=0)
-                                {//afficher la promotion si elle existe
-                            ?>
-                            <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> <?php echo $row["promotion_formation"];?> % <i class="material-icons">trending_down</i></a><!--promotion-->
-                            <?php
-                                }//fin de if promotion
-                            ?>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title dark-text text-darken-6" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><?php echo $row["titre_formation"];?><i class="material-icons right">close</i></span><!--titre-->
-                            <p><!--grand description-->
-                                <?php echo $row["grande_description_formation"];?>
-                            </p>
-                            <div class="card-action"><!--bouton d'inscription-->
-                                <a href="s_inscrire?formation=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
-                                <?php 
-                                    if ($row["promotion_formation"]!=0)
-                                    {//afficher la promotion si elle existe
-                                ?>
-                                <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> <?php echo $row["promotion_formation"];?> % <i class="material-icons">trending_down</i></a><!--promotion-->
-                                <?php
-                                    }//fin de if promotion
-                                ?>
+                <div class="col s12"><!--contact wallpaper-->
+                    <h4 class="center">contact</h4><br>
+                    <img class="responsive-img" src="public/src/pics/contact.png">
+                </div>
+                <div class="col l4 m6 s12"><!--information de contact-->
+                    <div class="card-panel grey lighten-5 z-depth-1"><!-- telephone-->
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                            <div class="col s2">
+                                <i class="material-icons" style="font-size: 25px; color: black;">phone</i>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    +212 6 80 41 38 93
+                                </span>
                             </div>
                         </div>
-                    </div><!--/card-->
-                </div><!--.col (une formation) /--> 
-            <?php
-                }//fin de la boucle des formations
-            ?>     
+                    </div>
+                    <div class="card-panel grey lighten-5 z-depth-1"><!-- mail-->
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                            <div class="col s2">
+                                <i class="material-icons" style="font-size: 25px; color: black;">mail</i>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    axentec2013@gmail.com
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-panel grey lighten-5 z-depth-1"><!-- location-->
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                            <div class="col s2">
+                                <i class="material-icons" style="font-size: 25px; color: black;">location_on</i>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    Avenue Moulay Abdelah - Rési dence AHLAM
+                                    B2 - Appartement Ol- RDC
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--.col (l'adress) /-->
+                <div class="col l8 m6 s12"><!--le formulaire-->
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                        <form class="col s12" methode="post" action="contact">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="nom_prenom" name="nom_prenom" type="text" class="validate">
+                                <label for="nom_prenom">nom & prenom</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="email" name="email" type="text" class="validate">
+                                <label for="email">votre email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="telephone" name="telephone" type="text" class="validate">
+                                <label for="telephone">num de telephone</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="message" name="message" class="materialize-textarea" style="height:180px;"></textarea>
+                                <label for="message">le message</label>
+                            </div>
+                        </form>
+                        </div>
+                    </div>  
+                </div><!--.col (le formulaire) /-->     
             </div><!--.row/--> 
         </div><!--.container/-->
         <footer class="page-footer orange" style="width:100%;"><!--footer-->
@@ -183,8 +199,8 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">des liens utiles</h5>
                 <ul>
-                <li><a href="contact" style="color:black;">$-contacter nous et avoir notre address.</a></li>
-                <li><a href="travaille_stage" style="color:black;">$-vous voulez faire un stage où bien travailler avec nous.</a></li>
+                <li><a href="contact" style="color:black;">contacter nous et avoir notre address.</a></li>
+                <li><a href="travaille_stage" style="color:black;">vous voulez faire un stage où bien travailler avec nous.</a></li>
                 </ul>
               </div>
             </div>
