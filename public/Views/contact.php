@@ -108,7 +108,6 @@
         <div class="container">
             <div class="row">
                 <div class="col s12"><!--contact wallpaper-->
-                    <h4 class="center">contact</h4><br>
                     <img class="responsive-img" src="public/src/pics/contact.png">
                 </div>
                 <div class="col l4 m6 s12"><!--information de contact-->
@@ -156,24 +155,29 @@
                         <form class="col s12" methode="post" action="contact">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">account_circle</i>
-                                <input id="nom_prenom" name="nom_prenom" type="text" class="validate">
+                                <input id="nom_prenom" name="nom_prenom" type="text" class="validate" required>
                                 <label for="nom_prenom">nom & prenom</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">mail</i>
-                                <input id="email" name="email" type="text" class="validate">
+                                <input id="email" name="email" type="email" class="validate" required>
                                 <label for="email">votre email</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">phone</i>
-                                <input id="telephone" name="telephone" type="text" class="validate">
+                                <input id="telephone" name="telephone" type="text" class="validate" required>
                                 <label for="telephone">num de telephone</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">mode_edit</i>
-                                <textarea id="message" name="message" class="materialize-textarea" style="height:180px;"></textarea>
+                                <textarea id="message" name="message" class="materialize-textarea" style="height:180px;" required></textarea>
                                 <label for="message">le message</label>
                             </div>
+                            <div class="input-field col s11 offset-s1">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">envoyer
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>  
                         </form>
                         </div>
                     </div>  

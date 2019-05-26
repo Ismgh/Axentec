@@ -54,5 +54,21 @@ class data
         }
         return $r;
     }
+    protected static function charger_offres()
+    {//fonction qui récupere tous les offres de stage est de travaille dans la base de données
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("SELECT * FROM travaille_stage");
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r;
+    }
 }
 ?>
