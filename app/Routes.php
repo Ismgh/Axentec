@@ -14,6 +14,11 @@
         Index::traitement_travaille_stage();
         Index::View('travaille_stage');    
     });
+    Route::set('se_connecter',function()
+    {// la page se connecter 
+        Index::traitement_se_connecter();
+        Index::View('se_connecter');    
+    });
     Route::set('test',function()
     {// tester quelque chose 
         Test::traitement_travaille_stage();
