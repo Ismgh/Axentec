@@ -5,7 +5,7 @@
         <!--Compiled and minified CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <!--le fichier CSS-->
-        <link rel="stylesheet" href="../custom_files/css/custom.css">
+        <link rel="stylesheet" href="http://localhost/Axentec/public/src/css/custom.css">
         <!--les icones-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Compiled and minified JavaScript-->
@@ -104,7 +104,9 @@
             <?php
                 }
             ?>
-        </ul>  
+        </ul>
+        <div id="travaille_stage" class="wallpaper"><!-- image wallpaper -->
+        </div>  
         <div class="container">
             <div class="row">
             <?php

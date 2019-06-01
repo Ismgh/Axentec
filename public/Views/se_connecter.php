@@ -111,7 +111,7 @@
                     <img class="responsive-img" src="public/src/pics/se_connecter.jpg">
                     <div class="card-panel grey lighten-5 z-depth-1">
                         <div class="row valign-wrapper"><!-- notice the "circle" class -->
-                        <form class="col s12" methode="post" action="se_connecter">
+                        <form class="col s12" method="post" action="se_connecter">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">account_circle</i>
                                 <input id="nom_utilisateur" name="nom_utilisateur" type="text" class="validate" required>

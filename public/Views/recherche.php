@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Compiled and minified JavaScript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <title>Axentec</title>
+        <title>recherche</title>
     </head>
     <body>
         <nav style="margin-bottom:25px;"><!--navbar desktop-->
@@ -105,24 +105,16 @@
                 }
             ?>
         </ul>
-        <div id="index" class="wallpaper"><!-- image wallpaper -->
-        </div>   
+        <div id="recherche" class="wallpaper"><!-- image wallpaper -->
+        </div>  
         <div class="container">
             <div class="row">
             <?php
                 /* la boucle sur les formation*/
                 $formations=$_POST["formations"];
-                $row=$formations->fetch();
+                while($row=$formations->fetch())
+                {
             ?>
-                <div class="col l6 m6 s12"><!--formulaire-->
-                    <h4> <?php echo $row["titre_formation"];?> </h4> 
-                    <div class="card-panel grey lighten-5 z-depth-1">
-                        <div class="collection"><!--message d'inscription-->
-                            <a href="#!" class="collection-item active">inscription réussie.</a>
-                            <a href="#!" class="collection-item">un message est envoyé à votre email et à votre télephone veillez le consulter pour completer votre inscription.</a>
-                        </div>
-                    </div>  
-                </div><!--/ (.col) formulaire-->  
                 <div class="col l4 m6 s12"><!--formation-->
                     <div class="card" style="box-shadow : gray 1px 1px 15px;"><!--card-->
                         <div class="card-image waves-effect waves-block waves-light">
@@ -139,14 +131,80 @@
                                 <?php echo $row["petit_description_formation"];?>
                             </p>
                         </div>
+                        <div class="card-action"><!--bouton d'inscription-->
+                            <a href="s_inscrire?formation=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
+                            <?php 
+                                if ($row["promotion_formation"]!=0)
+                                {//afficher la promotion si elle existe
+                            ?>
+                            <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> <?php echo $row["promotion_formation"];?> % <i class="material-icons">trending_down</i></a><!--promotion-->
+                            <?php
+                                }//fin de if promotion
+                            ?>
+                        </div>
                         <div class="card-reveal">
                             <span class="card-title dark-text text-darken-6" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><?php echo $row["titre_formation"];?><i class="material-icons right">close</i></span><!--titre-->
                             <p><!--grand description-->
                                 <?php echo $row["grande_description_formation"];?>
                             </p>
+                            <div class="card-action"><!--bouton d'inscription-->
+                                <a href="s_inscrire?formation=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="s'inscrire"><i class="material-icons">done</i></a>
+                                <?php 
+                                    if ($row["promotion_formation"]!=0)
+                                    {//afficher la promotion si elle existe
+                                ?>
+                                <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> <?php echo $row["promotion_formation"];?> % <i class="material-icons">trending_down</i></a><!--promotion-->
+                                <?php
+                                    }//fin de if promotion
+                                ?>
+                            </div>
                         </div>
                     </div><!--/card-->
-                </div><!--.col (une formation) /-->  
+                </div><!--.col (une formation) /-->     
+            <?php
+                }//fin de la boucle des formations
+            ?> 
+            <?php
+                /* la boucle sur les offres*/
+                $offres=$_POST["offres"];
+                while($row=$offres->fetch())
+                {
+            ?>
+                <div class="col l4 m6 s12"><!--offres des stages et de travaille-->
+                    <div class="card" style="box-shadow : gray 1px 1px 15px;"><!--card-->
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="<?php echo $row["image_travaille_stage"];?>"><!--image principale-->
+                            <span class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-shadow:black 1px 1px 13px;"><!--le titre-->
+                                <?php echo $row["id_travaille_stage"];?>
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">
+                            <a class=" waves-effect waves-gray white tooltipped  right" data-position="left"  data-tooltip="voir plus d'informations"><i class="material-icons">more_vert</i></a>
+                            </span>
+                            <p><!--petite description-->
+                                <?php echo $row["petite_desciption_travaille_stage"];?>
+                            </p>
+                        </div>
+                        <div class="card-action"><!--bouton de contact-->
+                            <a href="contact" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="contact"><i class="material-icons">phone</i></a>
+                            <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="date publication"> <?php echo Index::bontemp($row["dpublication_travaille_stage"]);?></a><!--date de promotion-->
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title dark-text text-darken-6" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><?php echo $row["id_travaille_stage"];?><i class="material-icons right">close</i></span><!--titre-->
+                            <p><!--grand description-->
+                                <?php echo $row["grand_description_travaille_stage"];?>
+                            </p>
+                            <div class="card-action"><!--bouton de contact-->
+                                <a href="contact" class="btn-floating btn-small waves-effect waves-light aqua tooltipped  pulse" data-position="right"  data-tooltip="contact"><i class="material-icons">phone</i></a>
+                                <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="date publication"> <?php echo Index::bontemp($row["dpublication_travaille_stage"]);?></a><!--date de promotion-->
+                            </div>
+                        </div>
+                    </div><!--/card-->
+                </div><!--.col (une offre) /--> 
+            <?php
+                }//fin de la boucle des offres de stages et de fomrmation
+            ?>     
             </div><!--.row/--> 
         </div><!--.container/-->
         <footer class="page-footer orange" style="width:100%;"><!--footer-->

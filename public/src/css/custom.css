@@ -1,7 +1,23 @@
-.card{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: deepskyblue
+.wallpaper
+{
+    height: 400px;
+    width: 100%;
+    margin-top: -25px;
+    margin-bottom: 30px;
 }
-body{
-    background-color: brown!important;
+#recherche
+{
+    background-image:url("../pics/recherche.jpeg");  
+}
+#contact
+{
+    background-image:url("../pics/contact.png");  
+}
+#index
+{
+    background-image:url("../pics/index.png");  
+}
+#travaille_stage
+{
+    background-image:url("../pics/travaille_stage.png");  
 }

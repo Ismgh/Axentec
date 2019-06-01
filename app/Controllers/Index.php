@@ -25,6 +25,37 @@ class Index extends Controller
         $cathegories=self::afficher_cathegories();
         $_POST["cathegories"]=$cathegories;//passage de cathegories dans la variable post
     }
+    public static function traitement_recherche()
+    {//la fonction qui va faire le traitement avant l'affichage de l'interface recherche.php
+        if (isset($_GET["t"])) 
+        {
+            $formations=self::afficher_formations_ct($_GET["t"]);
+            $_POST["formations"]=$formations;//passage des formations dans la variable post
+            $offres=self::afficher_offres_mc($_GET["t"]);//resoudre le probleme du fetch voire recherche.php
+            $_POST["offres"]=$offres;//passage de offres dans la variable post
+        }
+        else if (isset($_GET["s"])) 
+        {
+            $formations=self::afficher_formations_mc($_GET["s"]);
+            $_POST["formations"]=$formations;//passage des formations dans la variable post
+            $offres=self::afficher_offres_mc($_GET["s"]);
+            $_POST["offres"]=$offres;//passage de offres dans la variable post
+        }
+        else header('Location: index.php');
+        $cathegories=self::afficher_cathegories();
+        $_POST["cathegories"]=$cathegories;//passage de cathegories dans la variable post
+    }
+    public static function traitement_s_inscrire()
+    {//la fonction qui va faire le traitement avant l'affichage de l'interface s_inscrire.php
+        if (isset($_GET["formation"])) 
+        {
+            $formations=self::afficher_formations_id($_GET["formation"]);
+            $_POST["formations"]=$formations;//passage des formations dans la variable post
+            $cathegories=self::afficher_cathegories();
+            $_POST["cathegories"]=$cathegories;//passage de cathegories dans la variable post
+        } 
+        else header('Location:index.php');
+    }
     private static function afficher_formations()
     {
         $r=self::charger_formations();//voir data.php
@@ -38,6 +69,26 @@ class Index extends Controller
     private static function afficher_offres()//voir data.php
     {
         $r=self::charger_offres();
+        return $r;
+    }
+    private static function afficher_formations_ct($c)
+    {
+        $r=self::charger_formations_ct($c);//voir data.php
+        return $r;
+    }
+    private static function afficher_formations_mc($s)
+    {
+        $r=self::charger_formations_mc($s);//voir data.php
+        return $r;
+    }
+    private static function afficher_formations_id($s)
+    {
+        $r=self::charger_formations_id($s);//voir data.php
+        return $r;
+    }
+    private static function afficher_offres_mc($s)
+    {
+        $r=self::charger_offres_mc($s);//voir data.php
         return $r;
     }
     public static function bontemp ($time)

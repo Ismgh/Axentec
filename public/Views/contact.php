@@ -5,7 +5,7 @@
         <!--Compiled and minified CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <!--le fichier CSS-->
-        <link rel="stylesheet" href="../custom_files/css/custom.css">
+        <link rel="stylesheet" href="http://localhost/Axentec/public/src/css/custom.css">
         <!--les icones-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Compiled and minified JavaScript-->
@@ -104,12 +104,44 @@
             <?php
                 }
             ?>
-        </ul>  
+        </ul> 
+        <div id="contact" class="wallpaper"><!-- image wallpaper -->
+        </div>  
         <div class="container">
             <div class="row">
-                <div class="col s12"><!--contact wallpaper-->
-                    <img class="responsive-img" src="public/src/pics/contact.png">
-                </div>
+                <div class="col l8 m6 s12"><!--le formulaire-->
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                        <form class="col s12" methode="post" action="contact">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="nom_prenom" name="nom_prenom" type="text" class="validate" required>
+                                <label for="nom_prenom">nom & prenom</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="email" name="email" type="email" class="validate" required>
+                                <label for="email">votre email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="telephone" name="telephone" type="text" class="validate" required>
+                                <label for="telephone">num de telephone</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="message" name="message" class="materialize-textarea" style="height:180px;" required></textarea>
+                                <label for="message">le message</label>
+                            </div>
+                            <div class="input-field col s11 offset-s1">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">envoyer
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>  
+                        </form>
+                        </div>
+                    </div>  
+                </div><!--.col (le formulaire) /--> 
                 <div class="col l4 m6 s12"><!--information de contact-->
                     <div class="card-panel grey lighten-5 z-depth-1"><!-- telephone-->
                         <div class="row valign-wrapper"><!-- notice the "circle" class -->
@@ -148,40 +180,7 @@
                             </div>
                         </div>
                     </div>
-                </div><!--.col (l'adress) /-->
-                <div class="col l8 m6 s12"><!--le formulaire-->
-                    <div class="card-panel grey lighten-5 z-depth-1">
-                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
-                        <form class="col s12" methode="post" action="contact">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="nom_prenom" name="nom_prenom" type="text" class="validate" required>
-                                <label for="nom_prenom">nom & prenom</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">mail</i>
-                                <input id="email" name="email" type="email" class="validate" required>
-                                <label for="email">votre email</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">phone</i>
-                                <input id="telephone" name="telephone" type="text" class="validate" required>
-                                <label for="telephone">num de telephone</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">mode_edit</i>
-                                <textarea id="message" name="message" class="materialize-textarea" style="height:180px;" required></textarea>
-                                <label for="message">le message</label>
-                            </div>
-                            <div class="input-field col s11 offset-s1">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">envoyer
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>  
-                        </form>
-                        </div>
-                    </div>  
-                </div><!--.col (le formulaire) /-->     
+                </div><!--.col (l'adress) /-->    
             </div><!--.row/--> 
         </div><!--.container/-->
         <footer class="page-footer orange" style="width:100%;"><!--footer-->

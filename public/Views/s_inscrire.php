@@ -117,9 +117,45 @@
                 <div class="col l6 m6 s12"><!--formulaire-->
                     <h4> <?php echo $row["titre_formation"];?> </h4> 
                     <div class="card-panel grey lighten-5 z-depth-1">
-                        <div class="collection"><!--message d'inscription-->
-                            <a href="#!" class="collection-item active">inscription réussie.</a>
-                            <a href="#!" class="collection-item">un message est envoyé à votre email et à votre télephone veillez le consulter pour completer votre inscription.</a>
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                        <form class="col s12" method="post" action="test">
+                            <input id="id_formation" name="id_formation" value="<?php echo $row["id_formation"];?>" type="text" hidden>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="nom" name="nom" type="text" class="validate" required>
+                                <label for="nom">nom </label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">adb</i>
+                                <input id="prenom" name="prenom" type="text" class="validate" required>
+                                <label for="prenom">prenom</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="email" name="email" type="email" class="validate" required>
+                                <label for="email">votre email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="telephone" name="telephone" type="text" class="validate" required>
+                                <label for="telephone">num de telephone</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">fingerprint</i>
+                                <input id="nom_utilisateur" name="nom_utilisateur" type="text" class="validate" required>
+                                <label for="nom_utilisateur">nom d'utilisateur </label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">lock_outline</i>
+                                <input id="mot_de_pass" name="mot_de_pass" type="password" class="validate" required>
+                                <label for="mot_de_pass">mot de pass</label>
+                            </div>
+                            <div class="input-field col s11 offset-s1">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">s'inscrire
+                                    <i class="material-icons right">done</i>
+                                </button>
+                            </div>  
+                        </form>
                         </div>
                     </div>  
                 </div><!--/ (.col) formulaire-->  
