@@ -112,11 +112,11 @@
                 <div class="col l8 m6 s12"><!--le formulaire-->
                     <div class="card-panel grey lighten-5 z-depth-1">
                         <div class="row valign-wrapper"><!-- notice the "circle" class -->
-                        <form class="col s12" methode="post" action="contact">
+                        <form class="col s12" method="post" action="contact">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">account_circle</i>
                                 <input id="nom_prenom" name="nom_prenom" type="text" class="validate" required>
-                                <label for="nom_prenom">nom & prenom</label>
+                                <label for="nom_prenom">nom & prenom <span class="badge  new orange"><?php if(isset($_POST["erreur"])) echo $_POST["erreur"]; ?></span></label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">mail</i>

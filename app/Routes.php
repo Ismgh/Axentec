@@ -30,6 +30,10 @@
         Index::traitement_s_inscrire();
         Index::View('s_inscrire');    
     });
+    Route::set('live_verification',function()
+    {// verfier le nom de l'utilisateur live 
+        Index::valider_nom_utilisateur_live();   
+    });
     Route::set('paiement',function()
     {// la page de paiement 
         Index::traitement_paiement();
