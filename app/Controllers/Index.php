@@ -129,7 +129,7 @@ class Index extends Controller
         {
             $_POST["erreur"]="entrer juste chiffre/lettre/_";//si il y'a une erreur on va l'envoyer par une variable post à s_inscrire
         }
-        else if(self::verifier_utilisateur($_POST["nom_utilisateur"]))
+        else if(self::verifier_utilisateur_1($_POST["nom_utilisateur"]))
         {
             $_POST["erreur"]="nom d'utilisateur existe deja";//si il y'a une erreur on va l'envoyer par une variable post à s_inscrire
         }

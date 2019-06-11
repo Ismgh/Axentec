@@ -180,7 +180,7 @@ class data
             die();
         }
     }
-    protected static function verifier_utilisateur($user)
+    protected static function verifier_utilisateur_1($user)
     {//fonction qui vérifie si un utilisateur existe dans la base de données
         self::connexion();
         $r=self::$bd;
@@ -188,6 +188,26 @@ class data
         {//preparation et execution de la requette
             $r=$r->prepare("select * from utilisateur WHERE user = :user ");
             $r->bindValue(':user', $user , PDO::PARAM_STR);
+            $r->execute();
+            $r=$r->rowCount();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r;
+    } 
+    protected static function verifier_utilisateur_2($colone)
+    {//fonction qui vérifie si un utilisateur existe dans la base de données
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $colone[1]=hash('sha256',$colone[1]);//la fonction de hashage 256 voire https://www.php.net/manual/en/function.hash.php
+            $r=$r->prepare("select * from utilisateur WHERE user = :valeur0 and password = :valeur1 ");
+            $r->bindValue(':valeur0', $colone[0], PDO::PARAM_STR);
+            $r->bindValue(':valeur1', $colone[1], PDO::PARAM_STR);
             $r->execute();
             $r=$r->rowCount();
         }
