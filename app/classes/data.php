@@ -39,6 +39,72 @@ class data
         }
         return $r;
     }
+    protected static function ajouter_formation($colone)
+    {//ajouter une formation
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette 
+            $q="INSERT INTO formation (titre_formation, image_formation, petit_description_formation, grande_description_formation, promotion_formation, nombre_heure_par_seance, id_cathegorie)";
+            $q.=" VALUES ( :valeur0, :valeur1, :valeur2, :valeur3, :valeur4, :valeur5, :valeur6)";
+            $r=$r->prepare($q);
+            $r->bindValue(':valeur0', $colone[0], PDO::PARAM_STR);
+            $r->bindValue(':valeur1', $colone[1], PDO::PARAM_STR);
+            $r->bindValue(':valeur2', $colone[2], PDO::PARAM_STR);
+            $r->bindValue(':valeur3', $colone[3], PDO::PARAM_STR);
+            $r->bindValue(':valeur4', $colone[4]);
+            $r->bindValue(':valeur5', $colone[5]);
+            $r->bindValue(':valeur6', $colone[6], PDO::PARAM_STR);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }  
+    }
+    protected static function modifier_formation($colone)
+    {//modifier une formation
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $q="UPDATE formation SET titre_formation = :valeur1, image_formation = :valeur2, petit_description_formation = :valeur3, grande_description_formation = :valeur4";
+            $q.=", promotion_formation = :valeur5, nombre_heure_par_seance = :valeur6, id_cathegorie = :valeur7";
+            $q.=" WHERE id_formation = :valeur0;";
+            $r=$r->prepare($q);
+            $r->bindValue(':valeur0', $colone[0]);
+            $r->bindValue(':valeur1', $colone[1], PDO::PARAM_STR);
+            $r->bindValue(':valeur2', $colone[2], PDO::PARAM_STR);
+            $r->bindValue(':valeur3', $colone[3], PDO::PARAM_STR);
+            $r->bindValue(':valeur4', $colone[4], PDO::PARAM_STR);
+            $r->bindValue(':valeur5', $colone[5]);
+            $r->bindValue(':valeur6', $colone[6]);
+            $r->bindValue(':valeur7', $colone[7], PDO::PARAM_STR);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }  
+    }
+    protected static function supprimer_formation($id_formation)
+    {//supprimer une formation
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("DELETE FROM formation WHERE formation.id_formation = :id_formation");
+            $r->bindValue(':id_formation',$id_formation, PDO::PARAM_STR);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }  
+    }
     protected static function charger_formations_ct($c)
     {//fonction qui récupere les formation de la base de données appartient à une cathégorie
         self::connexion();
@@ -144,6 +210,23 @@ class data
         return $r;
     } 
     /*gestion de la table utilisateur*/
+    protected static function charger_utilisateur_id($nom_utilisateur)
+    {//charger l'utilisateur identifier par son id
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("select * from utilisateur WHERE user = :nom_utilisateur ");
+            $r->bindValue(':nom_utilisateur',$nom_utilisateur, PDO::PARAM_STR);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r;
+    }
     protected static function charger_utilisateur_admin()
     {//charger tous les utilisateur de type admin dans la base de données
         self::connexion();

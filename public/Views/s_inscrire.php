@@ -120,46 +120,46 @@
                     <h4> <?php echo $row["titre_formation"];?> </h4> 
                     <div class="card-panel grey lighten-5 z-depth-1">
                         <div class="row valign-wrapper"><!-- notice the "circle" class -->
-                        <form class="col s12" method="post" action="s_inscrire?formation=<?php echo $row["id_formation"];?>">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="nom" name="nom" type="text" class="validate" required>
-                                <label for="nom">nom </label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">adb</i>
-                                <input id="prenom" name="prenom" type="text" class="validate" required>
-                                <label for="prenom">prenom</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">mail</i>
-                                <input id="email" name="email" type="email" class="validate" required>
-                                <label for="email">votre email</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">phone</i>
-                                <input id="telephone" name="telephone" type="tel" class="validate" required>
-                                <label for="telephone">num de telephone</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">fingerprint</i>
-                                <input id="nom_utilisateur" name="nom_utilisateur" onkeyup="live_verification()" type="text" class="validate" required>
-                                <label for="nom_utilisateur">
-                                    nom d'utilisateur 
-                                    <span class="badge  new red"><?php if(isset($_POST["erreur"])) echo $_POST["erreur"]; ?></span>
-                                </label>
-                            </div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">lock_outline</i>
-                                <input id="mot_de_pass" name="mot_de_pass" type="password" class="validate" required>
-                                <label for="mot_de_pass">mot de pass</label>
-                            </div>
-                            <div class="input-field col s11 offset-s1">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">s'inscrire
-                                    <i class="material-icons right">done</i>
-                                </button>
-                            </div>  
-                        </form>
+                            <form class="col s12" method="post" action="s_inscrire?formation=<?php echo $row["id_formation"];?>">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="nom" name="nom" type="text" class="validate" required>
+                                    <label for="nom">nom </label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">adb</i>
+                                    <input id="prenom" name="prenom" type="text" class="validate" required>
+                                    <label for="prenom">prenom</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">mail</i>
+                                    <input id="email" name="email" type="email" class="validate" required>
+                                    <label for="email">votre email</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input id="telephone" name="telephone" type="tel" class="validate" required>
+                                    <label for="telephone">num de telephone</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">fingerprint</i>
+                                    <input id="nom_utilisateur" name="nom_utilisateur" onkeyup="live_verification()" type="text" class="validate" required>
+                                    <label for="nom_utilisateur">
+                                        nom d'utilisateur 
+                                        <span class="badge  new red"><?php if(isset($_POST["erreur"])) echo $_POST["erreur"]; ?></span>
+                                    </label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock_outline</i>
+                                    <input id="mot_de_pass" name="mot_de_pass" type="password" class="validate" required>
+                                    <label for="mot_de_pass">mot de pass</label>
+                                </div>
+                                <div class="input-field col s11 offset-s1">
+                                    <button class="btn waves-effect waves-light" type="submit" name="action">s'inscrire
+                                        <i class="material-icons right">done</i>
+                                    </button>
+                                </div>  
+                            </form>
                         </div>
                     </div>  
                 </div><!--/ (.col) formulaire-->  

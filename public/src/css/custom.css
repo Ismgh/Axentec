@@ -21,3 +21,10 @@
 {
     background-image:url("../pics/travaille_stage.png");  
 }
+table#tableau {
+    margin-left:120px;
+}
+.row
+{
+margin-left: 100px !important;
+}

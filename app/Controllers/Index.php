@@ -41,6 +41,27 @@ class Index extends Controller
     {//la fonction qui va faire le traitement avant l'affichage de l'interface se_connecter.php
         $cathegories=self::afficher_cathegories();
         $_POST["cathegories"]=$cathegories;//passage de cathegories dans la variable post
+        if (isset($_POST["nom_utilisateur"]))
+        {
+            $colone[0]=$_POST["nom_utilisateur"];
+            $colone[1]=$_POST["mot_de_pass"];
+            if(!self::verifier_utilisateur_1($_POST["nom_utilisateur"]))
+            {
+                $_POST["erreur"] = "ce nom d'utilisateur n'existe pas dans la base de données";
+            }
+            else if(!self::verifier_utilisateur_2($colone))
+            {
+                $_POST["erreur"] = "le mot de pass que vous avez entrez est incorrecte";
+            }
+            else 
+            {
+                session_start();
+                $utilisateur=self::charger_utilisateur_id($colone[0]);
+                $utilisateur=$utilisateur->fetch();
+                $_SESSION["utilisateur"]=$utilisateur;
+                header('Location:'.$utilisateur["id_type"]);
+            }
+        } 
     }
     public static function traitement_recherche()
     {//la fonction qui va faire le traitement avant l'affichage de l'interface recherche.php
@@ -172,7 +193,11 @@ class Index extends Controller
             }
             /*envoier un email à l'utilisateur qui vient de s'inscrire*/
             $message="votre inscription à été bien enregistrer le centre axentec va vous contacter dans un maximum de 3 jours\r\n";
-            $message=$message."si vous n'avez pas le temps vous pouvez les contacter en utilisant le lien suivant : axentec.com/contact";
+            $message=$message."si vous n'avez pas le temps vous pouvez les contacter en utilisant le lien suivant : http://axentec.com/contact";
+            $message = $message."\r\n";//retour à la ligne
+            $message = $message."nom d'utilisateur : ".$_POST["nom_utilisateur"];
+            $message = $message."\r\n";//retour à la ligne
+            $message = $message."mot de pass : ".$_POST["mot_de_pass"];
             mail($_POST["email"], 'inscription', $message,'From: john0sloth@gmail.com');
             header('Location:paiement?formation='.$_GET["formation"]);
         } 

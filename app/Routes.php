@@ -39,10 +39,21 @@
         Index::traitement_paiement();
         Index::View('paiement');    
     });
+    /* l'interface administrateur */
+    Route::set('administrateur',function()
+    {// la page de l'administrateur
+        Administrateur::traitement();
+        Administrateur::View('administrateur');    
+    });
+    Route::set('administrateur/formation',function()
+    {// la page des formations
+        Administrateur::traitement();
+        Administrateur::formation_traitement();
+        Administrateur::View('formation');    
+    });
     /* test */
     Route::set('test',function()
     {// tester quelque chose 
-        Test::traitement_paiement();
         Test::View('test');    
     });
 ?>

@@ -110,6 +110,14 @@
                 <div class="col l6 m8 s10 offset-s1 offset-l3 offset-m2"><!--le formulaire de login-->
                     <img class="responsive-img" src="public/src/pics/se_connecter.jpg">
                     <div class="card-panel grey lighten-5 z-depth-1">
+                        <?php 
+                            if (isset($_POST["erreur"]))
+                            { 
+                        ?>
+                        <h6 style="color:red"><?php echo $_POST["erreur"] ?></h6>
+                        <?php
+                            }
+                        ?>
                         <div class="row valign-wrapper"><!-- notice the "circle" class -->
                         <form class="col s12" method="post" action="se_connecter">
                             <div class="input-field col s12">
