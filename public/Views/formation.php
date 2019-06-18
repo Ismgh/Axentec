@@ -16,30 +16,30 @@
         <ul id="slide-out" class="sidenav sidenav-fixed"><!--navigation-->
             <li><div class="user-view">
                 <div class="background">
-                <img src="../src/pics/recherche.jpeg">
+                <img src="../src/pics/header.png">
                 </div>
-                <a href="#user"><img class="circle" src="../src/pics/index.png"></a>
+                <a href="#user"><img class="circle" src="../src/pics/user.png"></a>
                 <a href="#name"><span class="white-text name"><?php echo $_SESSION["utilisateur"]["user"]; ?></span></a>
                 <a href="#email"><span class="white-text email"><?php echo $_SESSION["utilisateur"]["email_utilisateur"]; ?></span></a>
             </div></li>
             <li class="active"><a href="#!"><i class="material-icons">book</i>les formations</a></li>
-            <li><a href="#!"><i class="material-icons">work</i> stage et  travaille</a></li>
-            <li><a href="#!"><i class="material-icons">account_circle</i>les utilisateurs</a></li>
-            <li><a href="#!"><i class="material-icons">group</i>les étudiants</a></li>
-            <li><a href="#!"><i class="material-icons">grain</i>les groups</a></li>
-            <li><a href="#!"><i class="material-icons">group_work</i>les enseignants</a></li>
-            <li><a href="#!"><i class="material-icons">archive</i>l'archive</a></li>
-            <li><a href="#!"><i class="material-icons">exit_to_app</i>se deconnecter</a></li>
+            <li><a href="stage_et_travaille"><i class="material-icons">work</i> stage et  travaille</a></li>
+            <li><a href="utilisateur"><i class="material-icons">account_circle</i>les utilisateurs</a></li>
+            <li><a href="etudiant"><i class="material-icons">group</i>les étudiants</a></li>
+            <li><a href="group"><i class="material-icons">grain</i>les groups</a></li>
+            <li><a href="enseignant"><i class="material-icons">group_work</i>les enseignants</a></li>
+            <li><a href="archive"><i class="material-icons">archive</i>l'archive</a></li>
+            <li><a href="logout"><i class="material-icons">exit_to_app</i>se deconnecter</a></li>
             <li><div class="divider"></div></li>
             <li><a class="subheader">les liens</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            <li><a href="etudiant_formation"><i class="material-icons">link</i>etudiant_formation</a></li>
         </ul>
         <div class="container">
             <div class="row">
                 <h4 class="center">
                     <i class="material-icons">book</i> 
                     Les formations
-                    <a href="#modal" onclick="ajouter_formation()" class="btn-floating btn-small  blue tooltipped modal-trigger" data-position="right"  data-tooltip="ajouter une formation"><i class="material-icons">add</i></a> 
+                    <a href="#modal" onclick="ajouter()" class="btn-floating btn-small  blue tooltipped modal-trigger" data-position="right"  data-tooltip="ajouter une formation"><i class="material-icons">add</i></a> 
                 </h4>
                 <?php
                     /* la boucle sur les formation*/
@@ -65,8 +65,8 @@
                             </p>
                         </div>
                         <div class="card-action"><!--bouton d'inscription-->
-                            <a href="#modal" onclick="modifier_formation()" class="btn-floating btn-small waves-effect waves-light aqua tooltipped modal-trigger " data-position="right"  data-tooltip="modifier cette formation"><i class="material-icons">create</i></a>
-                            <a href="?supprimer=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light red tooltipped " data-position="right"  data-tooltip="supprimer cette formation"><i class="material-icons">delete</i></a>
+                            <a href="#modal" onclick="modifier()" class="btn-floating btn-small waves-effect waves-light aqua tooltipped modal-trigger " data-position="right"  data-tooltip="modifier"><i class="material-icons">create</i></a>
+                            <a href="?supprimer=<?php echo $row["id_formation"];?>" class="btn-floating btn-small waves-effect waves-light red tooltipped " data-position="right"  data-tooltip="supprimer"><i class="material-icons">delete</i></a>
                             <a class=" btn-small waves-effect waves-light red tooltipped right" data-position="top"  data-tooltip="promotion"> <span><?php echo $row["promotion_formation"];?></span> % <i class="material-icons">trending_down</i></a><!--promotion-->
                         </div>
                         <div class="card-reveal">
@@ -82,7 +82,7 @@
         </div><!--.container/-->
         <div id="modal" class="modal modal-fixed-footer"><!-- Modal Structure -->
             <div class="modal-content">
-            <h4>Modal Header</h4>
+            <h4 id="modal_titre"></h4><br>
             <form id="modal_form" class="col s12 " method="post" action="">
                 <input id="type_action" value="1" type="text" hidden><!-- c'es l'inpute avec laquelle on connait si admin veut modifier ou ajouter formation -->
                 <input placeholder="" value="<?php echo $row["id_formation"];?>" id="id_formation" name="id_formation" type="text" class="validate" hidden>  
@@ -118,8 +118,8 @@
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">widgets</i>
-                    <select id="id_cathegorie" name="id_cathegorie" >
-                    <option value="" disabled selected>Choisire une option</option>
+                    <select  name="id_cathegorie" >
+                    <option id="id_cathegorie" selected>Choisire une option</option>
                     <?php 
                         $cathegories=$_POST["cathegories"];
                         while ($row=$cathegories->fetch()) 
@@ -166,8 +166,9 @@
                 var elems = document.querySelectorAll('select');
                 var instances = M.FormSelect.init(elems, classes="");
             });
-            function ajouter_formation() 
+            function ajouter() 
             {
+                document.getElementById("modal_titre").innerHTML="<i class='material-icons prefix'>add</i>ajouter";
                 document.getElementById("id_formation").setAttribute("value","");
                 document.getElementById("titre_formation").setAttribute("value","");
                 document.getElementById("image_formation").setAttribute("value","");
@@ -178,9 +179,10 @@
                 document.getElementById("id_cathegorie").setAttribute("value","");
                 document.getElementById("type_action").setAttribute("name","ajouter"); 
             }
-            function modifier_formation() 
+            function modifier() 
             {//obtenire les valeur de la formation selectionée
                 const form=event.target.closest(".card");
+                document.getElementById("modal_titre").innerHTML="<i class='material-icons prefix'>create</i> modifier";
                 document.getElementById("id_formation").setAttribute("value",form.getElementsByTagName("span")[3].innerHTML);
                 document.getElementById("titre_formation").setAttribute("value",form.getElementsByTagName("span")[0].innerHTML);
                 document.getElementById("image_formation").setAttribute("value",form.getElementsByTagName("img")[0].getAttribute("src"));

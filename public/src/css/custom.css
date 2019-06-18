@@ -21,6 +21,12 @@
 {
     background-image:url("../pics/travaille_stage.png");  
 }
+#administrateur
+{
+    background-image:url("../pics/administrateur.jpg"); 
+    margin-top:15px;
+    margin-left: 80px;   
+}
 table#tableau {
     margin-left:120px;
 }
