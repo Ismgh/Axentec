@@ -26,7 +26,7 @@
             <li><a href="stage_et_travaille"><i class="material-icons">work</i> stage et  travaille</a></li>
             <li><a href="utilisateur"><i class="material-icons">account_circle</i>les utilisateurs</a></li>
             <li><a href="etudiant"><i class="material-icons">group</i>les étudiants</a></li>
-            <li><a href="groupe"><i class="material-icons">grain</i>les groups</a></li>
+            <li><a href="group"><i class="material-icons">grain</i>les groups</a></li>
             <li  class="active"><a href="#!"><i class="material-icons">group_work</i>les enseignants</a></li>
             <li><a href="archive"><i class="material-icons">archive</i>l'archive</a></li>
             <li><a href="logout"><i class="material-icons">exit_to_app</i>se deconnecter</a></li>

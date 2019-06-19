@@ -221,7 +221,8 @@ class Administrateur extends Controller
             $colone[11]=$_POST["id_groupe"];
             $colone[12]=$_POST["id_formation_an"];
             $colone[13]=$_POST["id_etudiant_an"];
-            self::modifier_etudiant_formation($colone);//voir data
+            self::envoier_mail();//envoier un mail à l'étudiant pour lui informer à propos de la modification et au groups en cas de changememnt de seance 
+            self::modifier_etudiant_formation($colone);//voir data 
         }
         if (isset($_POST["ajouter"])) 
         {
@@ -248,6 +249,71 @@ class Administrateur extends Controller
         $_POST["groupes"]=$groupes;//passage de groupes dans la variable post
         $etudiants=self::charger_etudiants();
         $_POST["etudiants"]=$etudiants;//passage de utilisateurs dans la variable post
+    }
+    private static function envoier_mail()
+    {
+        /* etape uno envoier l'email à l'étudiant */
+        $etudiant=self::charger_etudiant_id($_POST["id_etudiant"]);
+        $etudiant=$etudiant->fetch();
+        $formation=self::charger_formations_id($_POST["id_formation"]);
+        $formation=$formation->fetch();
+        //construire le message
+        $message=" Axentec  \r\n nous voulons vous informer que l'administrateur a changée l'un de vous données \r\n";
+        $message = $message."Nous vous invitons à réviser ses données pour nous informer en cas d'erreur et de consulter votre compte dans notre site Axentec \r\n"; 
+        $message = $message."la formation que vous suivez : ".$formation["titre_formation"]."\r\n";
+        $message = $message."nombre de sceance present : ".$_POST["nombre_sceance_present"]."\r\n";
+        $message = $message."nombre de sceance absent : ".$_POST["nombre_sceance_absent"]."\r\n";
+        $message = $message."nombre d'heures par seance : ".$_POST["nombre_heures_par_seance"]."\r\n";
+        if($_POST["seance_1"]!="") $message = $message."date et heure de sceance 1 : ".$_POST["seance_1"]."\r\n";
+        if($_POST["seance_2"]!="") $message = $message."date et heure de sceance 2 : ".$_POST["seance_2"]."\r\n";
+        if($_POST["seance_3"]!="") $message = $message."date et heure de sceance 3 : ".$_POST["seance_3"]."\r\n";
+        if($_POST["seance_4"]!="") $message = $message."date et heure de sceance 4 : ".$_POST["seance_4"]."\r\n";
+        if($_POST["seance_5"]!="") $message = $message."date et heure de sceance 5 : ".$_POST["seance_5"]."\r\n";
+        if($_POST["seance_6"]!="") $message = $message."date et heure de sceance 6 : ".$_POST["seance_6"]."\r\n";
+        $message = $message."votre groupe : ".$_POST["id_groupe"]."\r\n";
+        $message = $message."Merci  ".$etudiant["nom_etudiant"]." ".$etudiant["prenom_etudiant"];
+        mail($etudiant["email"], 'verification & consultation', $message,'From: john0sloth@gmail.com');
+        /* etape dos envoier l'email à tous les autres étudiants qui appartenait aux meme group si les seances ont changé*/
+        //problem de fetch
+        $etudiant_formation=self::charger_etudiant_formation_id($_POST["id_formation"],$_POST["id_etudiant"]);
+        $etudiant_formation=$etudiant_formation->fetch();
+        //verifier si l'un de ses informations a changée
+        $test=($_POST["seance_1"]!=$etudiant_formation["seance_1"]||$_POST["seance_2"]!=$etudiant_formation["seance_2"]);
+        $test=($_POST["seance_4"]!=$etudiant_formation["seance_4"]||$_POST["seance_3"]!=$etudiant_formation["seance_3"]||$test);
+        $test=($_POST["seance_5"]!=$etudiant_formation["seance_5"]||$_POST["seance_6"]!=$etudiant_formation["seance_6"]||$test);
+        $test=($_POST["nombre_heures_par_seance"]!=$etudiant_formation["nombre_heures_par_seance"]||$test);
+        //construire le message(groupe)
+        $message=" Axentec  \r\n nous voulons vous informer que l'administrateur a changée l'un de vous données \r\n";
+        $message = $message."Nous vous invitons à réviser ses données pour nous informer en cas d'erreur et de consulter votre compte dans notre site Axentec \r\n"; 
+        $message = $message."la formation que vous suivez : ".$formation["titre_formation"]."\r\n";
+        $message = $message."nombre d'heures par seance : ".$_POST["nombre_heures_par_seance"]."\r\n";
+        if($_POST["seance_1"]!="") $message = $message."date et heure de sceance 1 : ".$_POST["seance_1"]."\r\n";
+        if($_POST["seance_2"]!="") $message = $message."date et heure de sceance 2 : ".$_POST["seance_2"]."\r\n";
+        if($_POST["seance_3"]!="") $message = $message."date et heure de sceance 3 : ".$_POST["seance_3"]."\r\n";
+        if($_POST["seance_4"]!="") $message = $message."date et heure de sceance 4 : ".$_POST["seance_4"]."\r\n";
+        if($_POST["seance_5"]!="") $message = $message."date et heure de sceance 5 : ".$_POST["seance_5"]."\r\n";
+        if($_POST["seance_6"]!="") $message = $message."date et heure de sceance 6 : ".$_POST["seance_6"]."\r\n";
+        $message = $message."votre groupe : ".$_POST["id_groupe"]."\r\n";
+        if($test)
+        {
+            /* remplire la colone */
+            $colone[0]=$_POST["nombre_heures_par_seance"];
+            $colone[1]=$_POST["seance_1"];
+            $colone[2]=$_POST["seance_2"];
+            $colone[3]=$_POST["seance_3"];
+            $colone[4]=$_POST["seance_4"];
+            $colone[5]=$_POST["seance_5"];
+            $colone[6]=$_POST["seance_6"];
+            $colone[7]=$_POST["id_groupe"];
+            $etudiants=self::charger_etudiants_id_groupe($_POST["id_groupe"]);//charger tous les etudiant du meme groupe
+            while ($etudiant = $etudiants->fetch()) 
+            {
+                self::modifier_etudiant_formation_groupe($colone);//modifier chaque persone
+                mail($etudiant["email"], 'verification & consultation', $message,'From: john0sloth@gmail.com');
+            }
+            
+        }
+        
     }
 }
 ?>

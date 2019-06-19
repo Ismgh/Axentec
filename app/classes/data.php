@@ -491,6 +491,23 @@ class data
             die();
         }  
     }
+    protected static function charger_etudiant_id($id_etudiant)
+    {//charger etudiant
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("select * from etudiant where id_etudiant = :id_etudiant");
+            $r->bindValue(':id_etudiant',$id_etudiant, PDO::PARAM_STR);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r;
+    }
     /*gestion de la table type*/
     protected static function charger_types()
     {//charger type
@@ -499,6 +516,23 @@ class data
         try 
         {//preparation et execution de la requette
             $r=$r->prepare("select * from type");
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r;
+    }
+    protected static function charger_etudiants_id_groupe($id_groupe)
+    {//charger les etudiants d'un group qui sont identifiée par un id_groupe
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("select * from etudiant e WHERE e.id_etudiant in (SELECT e_f.id_etudiant FROM etudiant_formation e_f WHERE e_f.id_groupe = :id_groupe)");
+            $r->bindValue(':id_groupe',$id_groupe, PDO::PARAM_STR);
             $r->execute();
         }
         catch (PDOException $e) 
@@ -815,6 +849,32 @@ class data
             die();
         }  
     }
+    protected static function modifier_etudiant_formation_groupe($colone)
+    {//modifier un les informations d'un group
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $q="UPDATE etudiant_formation SET   nombre_heures_par_seance = :valeur0, seance_1 = :valeur1, ";
+            $q.="seance_2 = :valeur2, seance_3 = :valeur3, seance_4 = :valeur4, seance_5 = :valeur5, seance_6 = :valeur6";
+            $q.=" WHERE  id_groupe = :valeur7 ; ";
+            $r=$r->prepare($q);
+            $r->bindValue(':valeur0', $colone[0]);
+            $r->bindValue(':valeur1', $colone[1]);
+            $r->bindValue(':valeur2', $colone[2]);
+            $r->bindValue(':valeur3', $colone[3]);
+            $r->bindValue(':valeur4', $colone[4]);
+            $r->bindValue(':valeur5', $colone[5]);
+            $r->bindValue(':valeur6', $colone[6]);
+            $r->bindValue(':valeur7', $colone[7]);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print  "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }  
+    }
     protected static function supprimer_etudiant_formation($id_formation,$id_etudiant)
     {//supprimer un etudiant_formation
         self::connexion();
@@ -831,6 +891,24 @@ class data
             print "<blockquote>".$e->getMessage()."</blockquote>";
             die();
         }  
+    }
+    protected static function charger_etudiant_formation_id($id_formation,$id_etudiant)
+    {//charger un etudiant_formation par id
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("select * from etudiant_formation WHERE id_formation = :id_formation and id_etudiant = :id_etudiant");
+            $r->bindValue(':id_formation',$id_formation);
+            $r->bindValue(':id_etudiant',$id_etudiant);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r;  
     }
 }
 ?>
