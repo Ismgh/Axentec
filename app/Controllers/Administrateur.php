@@ -4,11 +4,7 @@ class Administrateur extends Controller
     public static function traitement()
     {//traitement avant l'affichage
         session_start();
-        if ($_SESSION["utilisateur"]["id_type"]!="administrateur") 
-        {
-            unset($_SESSION);
-            header('Location:index.php');
-        }
+        if ($_SESSION["utilisateur"]["id_type"]!="administrateur") self::logout();
     }
     public static function formation_traitement()
     {

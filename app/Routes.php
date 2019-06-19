@@ -93,6 +93,12 @@
         Administrateur::etudiant_formation_traitement();
         Administrateur::View('etudiant_formation');    
     });
+    /* gestion de l'interface etudiant */
+    Route::set('etudiant_i',function()
+    {// la page de l'administrateur
+        Etudiant_i::traitement();
+        Etudiant_i::View('etudiant_i');    
+    });	
     /*logout*/
     Route::set('logout',function()
     {// sortire de la session 

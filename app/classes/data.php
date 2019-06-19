@@ -849,32 +849,6 @@ class data
             die();
         }  
     }
-    protected static function modifier_etudiant_formation_groupe($colone)
-    {//modifier un les informations d'un group
-        self::connexion();
-        $r=self::$bd;
-        try 
-        {//preparation et execution de la requette
-            $q="UPDATE etudiant_formation SET   nombre_heures_par_seance = :valeur0, seance_1 = :valeur1, ";
-            $q.="seance_2 = :valeur2, seance_3 = :valeur3, seance_4 = :valeur4, seance_5 = :valeur5, seance_6 = :valeur6";
-            $q.=" WHERE  id_groupe = :valeur7 ; ";
-            $r=$r->prepare($q);
-            $r->bindValue(':valeur0', $colone[0]);
-            $r->bindValue(':valeur1', $colone[1]);
-            $r->bindValue(':valeur2', $colone[2]);
-            $r->bindValue(':valeur3', $colone[3]);
-            $r->bindValue(':valeur4', $colone[4]);
-            $r->bindValue(':valeur5', $colone[5]);
-            $r->bindValue(':valeur6', $colone[6]);
-            $r->bindValue(':valeur7', $colone[7]);
-            $r->execute();
-        }
-        catch (PDOException $e) 
-        {//gestion des erreur
-            print  "<blockquote>".$e->getMessage()."</blockquote>";
-            die();
-        }  
-    }
     protected static function supprimer_etudiant_formation($id_formation,$id_etudiant)
     {//supprimer un etudiant_formation
         self::connexion();
@@ -909,6 +883,49 @@ class data
             die();
         }
         return $r;  
+    }
+    protected static function verifier_etudiant_formation_id_etudiant($id_etudiant)
+    {//charger un s'il existe un etudiant est approuvée par l'administrateur
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("select * from etudiant_formation WHERE  id_etudiant = :id_etudiant");
+            $r->bindValue(':id_etudiant',$id_etudiant);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r->rowCount();  
+    }
+    protected static function modifier_etudiant_formation_groupe($colone)
+    {//modifier un les informations d'un group
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $q="UPDATE etudiant_formation SET   nombre_heures_par_seance = :valeur0, seance_1 = :valeur1, ";
+            $q.="seance_2 = :valeur2, seance_3 = :valeur3, seance_4 = :valeur4, seance_5 = :valeur5, seance_6 = :valeur6";
+            $q.=" WHERE  id_groupe = :valeur7 ; ";
+            $r=$r->prepare($q);
+            $r->bindValue(':valeur0', $colone[0]);
+            $r->bindValue(':valeur1', $colone[1]);
+            $r->bindValue(':valeur2', $colone[2]);
+            $r->bindValue(':valeur3', $colone[3]);
+            $r->bindValue(':valeur4', $colone[4]);
+            $r->bindValue(':valeur5', $colone[5]);
+            $r->bindValue(':valeur6', $colone[6]);
+            $r->bindValue(':valeur7', $colone[7]);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print  "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }  
     }
 }
 ?>

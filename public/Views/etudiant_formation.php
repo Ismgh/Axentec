@@ -35,7 +35,7 @@
             <li  class="active"><a href="#!"><i class="material-icons">link</i>etudiant_formation</a></li>
         </ul>
         <div class="container">
-            <div class="row">
+            <div class="row row1">
                 <h4 class="center">
                 <i class="material-icons">link</i>
                 etudiant_formation
