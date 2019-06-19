@@ -191,7 +191,7 @@
                 <p class="grey-text text-lighten-4">
                     Le centre de formation professionnell e A X E N T E C
                     est situé à Avenue Moulay Abdelah - Rési dence AHLAM
-                    B2 - Appartement Ol- RDC- sur Marrakech Inaugure en décembre 2013, le centre offre quatre programmes
+                    B2 - Appartement 6- 2 éme étage- sur Marrakech Inaugure en décembre 2013, le centre offre quatre programmes
                     services :<br>
                     $-Formation en informatique<br>
                     $-Formation professionnelle<br>
@@ -202,8 +202,8 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">des liens utiles</h5>
                 <ul>
-                <li><a href="contact" style="color:black;">contacter nous et avoir notre address.</a></li>
-                <li><a href="travaille_stage" style="color:black;">vous voulez faire un stage où bien travailler avec nous.</a></li>
+                <li><a href="contact" style="color:black;">$-contacter nous et avoir notre address.</a></li>
+                <li><a href="travaille_stage" style="color:black;">$-vous voulez faire un stage où bien travailler avec nous.</a></li>
                 </ul>
               </div>
             </div>
@@ -211,8 +211,8 @@
           <div class="footer-copyright">
             <div class="container">
             © 2019 axentec.com
-            <a class="grey-text text-lighten-4 right" href="http://developement.tk">
-                &#119967; designed by developement.tk
+            <a class="grey-text text-lighten-4 right" href="http://ismgh.ml">
+                &#119967; designed by ismgh.ml
             </a>
             </div>
           </div>
