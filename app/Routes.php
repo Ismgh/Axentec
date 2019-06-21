@@ -94,11 +94,29 @@
         Administrateur::View('etudiant_formation');    
     });
     /* gestion de l'interface etudiant */
-    Route::set('etudiant_i',function()
-    {// la page de l'administrateur
+    Route::set('etudiant',function()
+    {// la page de l'etudiant
         Etudiant_i::traitement();
         Etudiant_i::View('etudiant_i');    
     });	
+    Route::set('etudiant/formation',function()
+    {// la page de les formations d'un etudiant
+        Etudiant_i::traitement();
+        Etudiant_i::traitement_formation();
+        Etudiant_i::View('formation_i');    
+    });
+    Route::set('etudiant/contact',function()
+    {// la page de contact de l'etudiant
+        Etudiant_i::traitement();
+        Etudiant_i::traitement_contact();
+        Etudiant_i::View('contact_i');    
+    });
+    Route::set('etudiant/utilisateur',function()
+    {// la page de compte de l'etudiant
+        Etudiant_i::traitement();
+        Etudiant_i::traitement_utilisateur();
+        Etudiant_i::View('utilisateur_i');    
+    });
     /*logout*/
     Route::set('logout',function()
     {// sortire de la session 

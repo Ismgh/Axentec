@@ -27,8 +27,7 @@ class Index extends Controller
                 mail($administrateur["email_utilisateur"], 'contact', $message,'From: john0sloth@gmail.com');
             }
             $_POST["erreur"]="le message est envoiée !";
-        } 
-        
+        }   
     }
     public static function traitement_travaille_stage()
     {//la fonction qui va faire le traitement avant l'affichage de l'interface travaille_stage.php

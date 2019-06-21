@@ -71,7 +71,6 @@
                                 <th style="font-size:15px"> type</th>
                                 <td style="font-size:15px"><?php echo $row["id_type"];?></td>
                             </tr>
-                            </tbody>
                         </table> 
                         </div>
                         <div class="card-action"><!--bouton d'inscription-->

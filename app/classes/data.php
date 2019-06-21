@@ -884,6 +884,23 @@ class data
         }
         return $r;  
     }
+    protected static function charger_etudiant_formation_id_etudiant($id_etudiant)
+    {//charger un etudiant_formation par id_etudiant
+        self::connexion();
+        $r=self::$bd;
+        try 
+        {//preparation et execution de la requette
+            $r=$r->prepare("SELECT * from etudiant_formation ef,formation f WHERE ef.id_formation=f.id_formation and ef.id_etudiant=:id_etudiant");
+            $r->bindValue(':id_etudiant',$id_etudiant);
+            $r->execute();
+        }
+        catch (PDOException $e) 
+        {//gestion des erreur
+            print "<blockquote>".$e->getMessage()."</blockquote>";
+            die();
+        }
+        return $r;  
+    }
     protected static function verifier_etudiant_formation_id_etudiant($id_etudiant)
     {//charger un s'il existe un etudiant est approuvée par l'administrateur
         self::connexion();

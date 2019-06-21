@@ -15,7 +15,13 @@
 }
 #index
 {
-    background-image:url("../pics/index.png");  
+    color:white;
+    padding: 30px; 
+    background-image:url("../pics/index.jpg"); 
+    height: auto;
+    margin-top: -25px; 
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #travaille_stage
 {
@@ -23,9 +29,18 @@
 }
 #administrateur
 {
-    background-image:url("../pics/administrateur.jpg"); 
-    margin-top:15px;
-    margin-left: 80px;   
+    background-image:url("../pics/index.jpg"); 
+    background-repeat: no-repeat;
+    background-size:cover;  
+}
+#etudiant
+{
+    height:800px;
+    background-image:url("../pics/index.jpg"); 
+    background-repeat: no-repeat;
+    background-size:cover;
+    margin-bottom: -60px;
+    color:rgb(255, 255, 255);
 }
 table#tableau {
     margin-left:120px;

@@ -54,58 +54,57 @@
                             <span class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-shadow:black 1px 1px 13px;"><?php echo $row["id_etudiant"];?> | <?php echo $row["id_formation"];?></span>
                         </div>
                         <div class="card-content" style="overflow-x: auto;">
-                        <table class="striped">
-                            <tr>
-                                <th style="font-size:15px"> id_formation</th>
-                                <td style="font-size:15px"><?php echo $row["id_formation"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px">id_etudiant</th>
-                                <td style="font-size:15px"><?php echo $row["id_etudiant"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px">nombre_sceance_present</th>
-                                <td style="font-size:15px"><?php echo $row["nombre_sceance_present"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px">nombre_sceance_absent</th>
-                                <td style="font-size:15px"><?php echo $row["nombre_sceance_absent"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px">nombre_heures_par_seance</th>
-                                <td style="font-size:15px"><?php echo $row["nombre_heures_par_seance"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px"> seance_1 </th>
-                                <td style="font-size:15px"><?php echo $row["seance_1"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px"> seance_2 </th>
-                                <td style="font-size:15px"><?php echo $row["seance_2"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px"> seance_3 </th>
-                                <td style="font-size:15px"><?php echo $row["seance_3"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px"> seance_4 </th>
-                                <td style="font-size:15px"><?php echo $row["seance_4"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px"> seance_5 </th>
-                                <td style="font-size:15px"><?php echo $row["seance_5"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px"> seance_6 </th>
-                                <td style="font-size:15px"><?php echo $row["seance_6"];?></td>
-                            </tr>
-                            <tr>
-                                <th style="font-size:15px"> id_groupe </th>
-                                <td style="font-size:15px"><?php echo $row["id_groupe"];?></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p>  
+                            <table class="striped">
+                                <tr>
+                                    <th style="font-size:15px"> id_formation</th>
+                                    <td style="font-size:15px"><?php echo $row["id_formation"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px">id_etudiant</th>
+                                    <td style="font-size:15px"><?php echo $row["id_etudiant"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px">nombre_sceance_present</th>
+                                    <td style="font-size:15px"><?php echo $row["nombre_sceance_present"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px">nombre_sceance_absent</th>
+                                    <td style="font-size:15px"><?php echo $row["nombre_sceance_absent"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px">nombre_heures_par_seance</th>
+                                    <td style="font-size:15px"><?php echo $row["nombre_heures_par_seance"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px"> seance_1 </th>
+                                    <td style="font-size:15px"><?php echo $row["seance_1"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px"> seance_2 </th>
+                                    <td style="font-size:15px"><?php echo $row["seance_2"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px"> seance_3 </th>
+                                    <td style="font-size:15px"><?php echo $row["seance_3"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px"> seance_4 </th>
+                                    <td style="font-size:15px"><?php echo $row["seance_4"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px"> seance_5 </th>
+                                    <td style="font-size:15px"><?php echo $row["seance_5"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px"> seance_6 </th>
+                                    <td style="font-size:15px"><?php echo $row["seance_6"];?></td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size:15px"> id_groupe </th>
+                                    <td style="font-size:15px"><?php echo $row["id_groupe"];?></td>
+                                </tr>
+                                </tbody>
+                            </table> 
                         </div>
                         <div class="card-action"><!--bouton d'inscription-->
                             <a href="#modal" onclick="modifier()" class="btn-floating btn-small waves-effect waves-light aqua tooltipped modal-trigger " data-position="right"  data-tooltip="modifier"><i class="material-icons">create</i></a>

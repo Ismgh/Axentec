@@ -105,8 +105,23 @@
                 }
             ?>
         </ul>
-        <div id="index" class="wallpaper"><!-- image wallpaper -->
-        </div>   
+        <div class="row center" id="index">
+            <div class="col l4 s12"> 
+                <img class="responsive-img" src="src/pics/ch_f.png">  
+                <h4>chercher</h4>
+                <p>vous chercher une formation utiliser la bar de recherche ou bien chercher par cathegorie</p> 
+            </div> 
+            <div class="col l4 s12"> 
+                <img class="responsive-img" src="src/pics/cont_n.png">  
+                <h4>contacter</h4>
+                <p>si vous avez des questions ou des problémes <a href="contact">contacter nous</a> </p> 
+            </div>
+            <div class="col l4 s12"> 
+                <img class="responsive-img" src="src/pics/trv_n.png">  
+                <h4>travailler ou stager</h4>
+                <p>vous pouvez travaillez chez nous ou bien faire un stage consulter cette <a href="travaille_stage">section</a> si vous ete intéressé</p> 
+            </div>
+        </div><br><br>
         <div class="container">
             <div class="row">
             <?php
@@ -166,6 +181,42 @@
             ?>     
             </div><!--.row/--> 
         </div><!--.container/-->
+        <br><br>
+        <div class="row">
+            <div class="col l6 s12"> 
+            <img class="responsive-img" src="src/pics/index2.png">  
+            </div> 
+            <div class="col l6 s12">
+            <br><br><br>
+                <div class="row">
+                    <div class="col s2">
+                        <img class="responsive-img" src="src/pics/s_inscrire.png">  
+                    </div>
+                    <div class="col s10">
+                        <h4>s'inscrire</h4>
+                        <p> premiere étape est de s'inscrire dans une formation et payer les frais de dossier</p>  
+                    </div>
+                </div><br><br> 
+                <div class="row">
+                    <div class="col s2">
+                        <img class="responsive-img" src="src/pics/etudier.png">  
+                    </div>
+                    <div class="col s10">
+                        <h4>travailler</h4>
+                        <p>la deuxiéme étape consite à travailler et faire l'effort en assisstant au cours et en faison les exercices</p>  
+                    </div>
+                </div><br><br> 
+                <div class="row">
+                    <div class="col s2">
+                        <img class="responsive-img" src="src/pics/certifier.png">  
+                    </div>
+                    <div class="col s10">
+                        <h4>certificat</h4>
+                        <p>la troisiéme étape est la certificat que vous obtener aprés finire la formation</p>  
+                    </div>
+                </div><br><br> 
+            </div>
+        </div>
         <footer class="page-footer orange" style="width:100%;"><!--footer-->
           <div class="container">
             <div class="row">

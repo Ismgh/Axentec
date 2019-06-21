@@ -16,7 +16,7 @@
         <nav style="margin-bottom:25px;"><!--navbar desktop-->
             <div class="nav-wrapper orange" >
                 <a href="index.php" class="brand-logo tooltipped hide-on-med-and-down" data-position="bottom"  data-tooltip="<?php echo $_SESSION['utilisateur']['user']; ?> | <?php echo $_SESSION['utilisateur']['email_utilisateur']; ?>">
-                    <img style="width:63px;" class="circle" src="src/pics/user.png">
+                    <img style="width:63px;" class="circle" src="../src/pics/user.png">
                 </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
@@ -34,13 +34,13 @@
                     <?php 
                         }
                     ?>
-                    <li><a href="etudiant/formation" class="tooltipped" data-position="bottom"  data-tooltip="mes formations">
+                    <li><a href="formation" class="tooltipped" data-position="bottom"  data-tooltip="mes formations">
                         <i class="material-icons">book</i> 
                     </a></li>
-                    <li><a href="etudiant/utilisateur" class="tooltipped"  data-position="bottom"  data-tooltip="mon compte">
+                    <li><a href="utilisateur" class="tooltipped"  data-position="bottom"  data-tooltip="mon compte">
                         <i class="material-icons">account_circle</i>
                     </a></li>
-                    <li><a href="etudiant/contact" class="tooltipped"  data-position="bottom"  data-tooltip="contacter l'administrateur">
+                    <li><a href="#" class="tooltipped  active"  data-position="bottom"  data-tooltip="contacter l'administrateur">
                         <i class="material-icons">phone</i>
                     </a></li> 
                     <li><a href="logout" class="tooltipped" data-position="left"  data-tooltip="se deconnecter">
@@ -52,9 +52,9 @@
         <ul class="sidenav" id="mobile-demo"><!--navbar mobile-->
             <li><div class="user-view">
                 <div class="background">
-                <img src="src/pics/header.png">
+                <img src="../src/pics/header.png">
                 </div>
-                <a href="#user"><img class="circle" src="src/pics/user.png"></a>
+                <a href="#user"><img class="circle" src="../src/pics/user.png"></a>
                 <a href="#name"><span class="white-text name"><?php echo $_SESSION["utilisateur"]["user"]; ?></span></a>
                 <a href="#email"><span class="white-text email"><?php echo $_SESSION["utilisateur"]["email_utilisateur"]; ?></span></a>
             </div></li>
@@ -72,13 +72,13 @@
             <?php 
                 }
             ?>
-            <li><a href="etudiant/formation" class="tooltipped"  data-position="right"  data-tooltip="formation">
+            <li><a href="formation" class="tooltipped active"  data-position="right"  data-tooltip="formation">
                 <i class="material-icons">book</i>mes formations 
             </a></li>
-            <li><a href="etudiant/utilisateur" class="tooltipped" data-position="right"  data-tooltip="utilisateur">
+            <li><a href="utilisateur" class="tooltipped" data-position="right"  data-tooltip="utilisateur">
                 <i class="material-icons">account_circle</i>mon compte
             </a></li>
-            <li><a href="etudiant/contact" class="tooltipped" data-position="right"  data-tooltip="contact">
+            <li><a href="#" class="tooltipped  active" data-position="right"  data-tooltip="contact">
                 <i class="material-icons">phone</i>contacter admin
             </a></li> 
             <li><a href="logout" class="tooltipped" data-position="right"  data-tooltip="se deconnecter">
@@ -86,51 +86,84 @@
             </li>
         </ul><!--/navbar mobile--> 
         <div  id="etudiant" class="wallpaper">
-            <?php 
-                if($_SESSION["utilisateur"]["approuver"]==0) 
-                {// verifier si l'etudiant est approuver par l'administrateur
-            ?>
-            <br>
-            <div class="container"><br>
-                <h4 class="center">bonjour <?= $_SESSION["utilisateur"]["user"]; ?> :
-                    <small>
-                        votre compte n'est pas encore approuver par l'administrateur c'est à dire il y'a deux possibilitées
-                    </small>
-                </h4><br>
-                <h6 style="color:black"> 
-                    <div class="row card-panel grey lighten-5 z-depth-1">
-                        <div class="col s1">
-                            <i class="material-icons">monetization_on</i>
+        <div class="container">
+            <div class="row">
+                <br>
+                <h4 class="center"><i class="material-icons">phone</i> contacter l'administrateur</h4><br>
+                <div class="col l8 m6 s12" style="color:black"><!--le formulaire-->
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                        <form class="col s12" method="post" action="contact">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="nom_prenom" name="nom_prenom" type="text" class="validate" required>
+                                <label for="nom_prenom">nom & prenom <span class="badge  new orange"><?php if(isset($_POST["erreur"])) echo $_POST["erreur"]; ?></span></label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="email" placeholder="" name="email" type="email" class="validate" value="<?= $_SESSION["utilisateur"]["email_utilisateur"]?> " required>
+                                <label for="email">votre email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="telephone" name="telephone" type="text" class="validate" required>
+                                <label for="telephone">num de telephone</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="message" name="message" class="materialize-textarea" style="height:180px;" required></textarea>
+                                <label for="message">le message</label>
+                            </div>
+                            <div class="input-field col s11 offset-s1">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">envoyer
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>  
+                        </form>
                         </div>
-                        <div class="col s11">
-                            <b> vous n'avez pas payez les frais de la formation </b> donc vous
-                            deverez <a href="etudiant_i/contact_i">contacter</a> la société Axentec pour descuter avec eux le prix et savoire si il 
-                            y'a des réductions ensuite vous devrez payez les frais de votre dossier, Axentec va descutrer avec vous comment vous pouvez payer
-                            (les différents méthodes de payement).<br>
+                    </div>  
+                </div><!--.col (le formulaire) /--> 
+                <div class="col l4 m6 s12"><!--information de contact-->
+                    <div class="card-panel grey lighten-5 z-depth-1"><!-- telephone-->
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                            <div class="col s2">
+                                <i class="material-icons" style="font-size: 25px; color: black;">phone</i>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    +212 6 80 41 38 93
+                                </span>
+                            </div>
                         </div>
-                    </div><br><br>
-                    <div class="row card-panel grey lighten-5 z-depth-1">
-                        <div class="col s1">
-                        <i class="material-icons">hotel</i>
+                    </div>
+                    <div class="card-panel grey lighten-5 z-depth-1"><!-- mail-->
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                            <div class="col s2">
+                                <i class="material-icons" style="font-size: 25px; color: black;">mail</i>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    axentec2013@gmail.com
+                                </span>
+                            </div>
                         </div>
-                        <div class="col s11">
-                            <b> vous avez payez les frais de la formation </b> donc vous devrez relaxez car la procedure
-                            d'approuver un etudiant peut prendre du temp et vérifier aprés quelque jours si votre compte est approuvée sinon si le temp depasse 10 jours contacter l'administrateur
-                            pour régler se probléme.
+                    </div>
+                    <div class="card-panel grey lighten-5 z-depth-1"><!-- location-->
+                        <div class="row valign-wrapper"><!-- notice the "circle" class -->
+                            <div class="col s2">
+                                <i class="material-icons" style="font-size: 25px; color: black;">location_on</i>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    Avenue Moulay Abdelah - Rési dence AHLAM
+                                    B2 - Appartement Ol- RDC
+                                </span>
+                            </div>
                         </div>
-                    </div> 
-                </h6>
-            </div>
-            <?php 
-                }
-                else
-                {
-            ?>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <h4 class="center">bonjour <?= $_SESSION["utilisateur"]["user"]; ?></h4><br>
-            <?php 
-                }
-            ?>
+                    </div>
+                </div><!--.col (l'adress) /-->    
+            </div><!--.row/--> 
+        </div><!--.container/-->
         </div><!--.wallpaper/-->
         <footer class="page-footer orange" style="width:100%;"><!--footer-->
           <div class="container">

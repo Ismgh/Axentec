@@ -12,7 +12,7 @@
         <script src="http://localhost/Axentec/public/src/materialize/js/materialize.min.js"></script>
         <title>administrateur</title>
     </head>
-    <body>  
+    <body id="administrateur">  
         <ul id="slide-out" class="sidenav sidenav-fixed"><!--navigation-->
             <li><div class="user-view">
                 <div class="background">
@@ -35,9 +35,9 @@
             <li><a href="administrateur/etudiant_formation"><i class="material-icons">link</i>etudiant_formation</a></li>
         </ul>
         <div class="container">
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <div class="row row1">
-                <h4 class="center">bonjour <?= $_SESSION["utilisateur"]["user"]; ?></h4><!--le nom du tabeleau-->
-                <div id="administrateur" class="wallpaper"></div><!-- image wallpaper -->
+                <h4 class="center" style="color:white">bonjour <?= $_SESSION["utilisateur"]["user"]; ?></h4><!--le nom du tabeleau-->
             </div><!--.row/--> 
         </div><!--.container/-->
         <script>

@@ -16,7 +16,7 @@
         <nav style="margin-bottom:25px;"><!--navbar desktop-->
             <div class="nav-wrapper orange" >
                 <a href="index.php" class="brand-logo tooltipped hide-on-med-and-down" data-position="bottom"  data-tooltip="<?php echo $_SESSION['utilisateur']['user']; ?> | <?php echo $_SESSION['utilisateur']['email_utilisateur']; ?>">
-                    <img style="width:63px;" class="circle" src="src/pics/user.png">
+                    <img style="width:63px;" class="circle" src="../src/pics/user.png">
                 </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
@@ -34,13 +34,13 @@
                     <?php 
                         }
                     ?>
-                    <li><a href="etudiant/formation" class="tooltipped" data-position="bottom"  data-tooltip="mes formations">
+                    <li><a href="#" class="tooltipped active" data-position="bottom"  data-tooltip="mes formations">
                         <i class="material-icons">book</i> 
                     </a></li>
-                    <li><a href="etudiant/utilisateur" class="tooltipped"  data-position="bottom"  data-tooltip="mon compte">
+                    <li><a href="utilisateur" class="tooltipped"  data-position="bottom"  data-tooltip="mon compte">
                         <i class="material-icons">account_circle</i>
                     </a></li>
-                    <li><a href="etudiant/contact" class="tooltipped"  data-position="bottom"  data-tooltip="contacter l'administrateur">
+                    <li><a href="contact" class="tooltipped"  data-position="bottom"  data-tooltip="contacter l'administrateur">
                         <i class="material-icons">phone</i>
                     </a></li> 
                     <li><a href="logout" class="tooltipped" data-position="left"  data-tooltip="se deconnecter">
@@ -52,9 +52,9 @@
         <ul class="sidenav" id="mobile-demo"><!--navbar mobile-->
             <li><div class="user-view">
                 <div class="background">
-                <img src="src/pics/header.png">
+                <img src="../src/pics/header.png">
                 </div>
-                <a href="#user"><img class="circle" src="src/pics/user.png"></a>
+                <a href="#user"><img class="circle" src="../src/pics/user.png"></a>
                 <a href="#name"><span class="white-text name"><?php echo $_SESSION["utilisateur"]["user"]; ?></span></a>
                 <a href="#email"><span class="white-text email"><?php echo $_SESSION["utilisateur"]["email_utilisateur"]; ?></span></a>
             </div></li>
@@ -72,20 +72,20 @@
             <?php 
                 }
             ?>
-            <li><a href="etudiant/formation" class="tooltipped"  data-position="right"  data-tooltip="formation">
+            <li><a href="#" class="tooltipped active"  data-position="right"  data-tooltip="formation">
                 <i class="material-icons">book</i>mes formations 
             </a></li>
-            <li><a href="etudiant/utilisateur" class="tooltipped" data-position="right"  data-tooltip="utilisateur">
+            <li><a href="utilisateur" class="tooltipped" data-position="right"  data-tooltip="utilisateur">
                 <i class="material-icons">account_circle</i>mon compte
             </a></li>
-            <li><a href="etudiant/contact" class="tooltipped" data-position="right"  data-tooltip="contact">
+            <li><a href="contact" class="tooltipped" data-position="right"  data-tooltip="contact">
                 <i class="material-icons">phone</i>contacter admin
             </a></li> 
             <li><a href="logout" class="tooltipped" data-position="right"  data-tooltip="se deconnecter">
                 <i class="material-icons">exit_to_app</i>se deconnecter</a>
             </li>
         </ul><!--/navbar mobile--> 
-        <div  id="etudiant" class="wallpaper">
+        <div  id="etudiant" class="wallpaper" style="height:auto;">
             <?php 
                 if($_SESSION["utilisateur"]["approuver"]==0) 
                 {// verifier si l'etudiant est approuver par l'administrateur
@@ -126,11 +126,107 @@
                 else
                 {
             ?>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <h4 class="center">bonjour <?= $_SESSION["utilisateur"]["user"]; ?></h4><br>
-            <?php 
-                }
-            ?>
+            <div class="container">
+                <div class="row"><br>
+                <h4 class="center"><i class="material-icons">book</i> mes formations</h4><br>
+                <?php
+                    $etudiant_formations=$_POST["etudiant_formations"];
+                    while($row=$etudiant_formations->fetch())
+                    {
+                ?>
+                    <div class="col l4 m6 s12"><!--formation-->
+                        <div class="card" style="box-shadow : gray 1px 1px 15px;"><!--card-->
+                            <div class="card-image waves-effect waves-block waves-light"><!--le titre-->
+                                <img src="<?php echo $row["image_formation"];?>"><!--image principale-->
+                                <span class="card-title" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-shadow:black 1px 1px 13px;"><?php echo $row["titre_formation"];?></span>
+                            </div>
+                            <div class="card-content" style="overflow-x: auto;">
+                                <table class="striped">
+                                    <tr>
+                                        <th style="font-size:15px">nombre_sceance_present</th>
+                                        <td style="font-size:15px"><?php echo $row["nombre_sceance_present"];?></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size:15px">nombre_sceance_absent</th>
+                                        <td style="font-size:15px"><?php echo $row["nombre_sceance_absent"];?></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size:15px">nombre_heures_par_seance</th>
+                                        <td style="font-size:15px"><?php echo $row["nombre_heures_par_seance"];?></td>
+                                    </tr>
+                                    <?php 
+                                        if ($row["seance_1"]!="") 
+                                        {//vérifier si les seances sont vides
+                                    ?>
+                                    <tr>
+                                        <th style="font-size:15px"> seance_1 </th>
+                                        <td style="font-size:15px"><?php echo $row["seance_1"];?></td>
+                                    </tr>
+                                    <?php 
+                                        }
+                                        if ($row["seance_2"]!="") 
+                                        {//vérifier si les seances sont vides
+                                    ?>
+                                    <tr>
+                                        <th style="font-size:15px"> seance_2 </th>
+                                        <td style="font-size:15px"><?php echo $row["seance_2"];?></td>
+                                    </tr>
+                                    <?php 
+                                        }
+                                        if ($row["seance_3"]!="") 
+                                        {//vérifier si les seances sont vides
+                                    ?>
+                                    <tr>
+                                        <th style="font-size:15px"> seance_3 </th>
+                                        <td style="font-size:15px"><?php echo $row["seance_3"];?></td>
+                                    </tr>
+                                    <?php 
+                                        }
+                                        if ($row["seance_4"]!="") 
+                                        {//vérifier si les seances sont vides
+                                    ?>
+                                    <tr>
+                                        <th style="font-size:15px"> seance_4 </th>
+                                        <td style="font-size:15px"><?php echo $row["seance_4"];?></td>
+                                    </tr>
+                                    <?php 
+                                        }
+                                        if ($row["seance_5"]!="") 
+                                        {//vérifier si les seances sont vides
+                                    ?>
+                                    <tr>
+                                        <th style="font-size:15px"> seance_5 </th>
+                                        <td style="font-size:15px"><?php echo $row["seance_5"];?></td>
+                                    </tr>
+                                    <?php 
+                                        }
+                                        if ($row["seance_6"]!="") 
+                                        {//vérifier si les seances sont vides
+                                    ?>
+                                    <tr>
+                                        <th style="font-size:15px"> seance_6 </th>
+                                        <td style="font-size:15px"><?php echo $row["seance_6"];?></td>
+                                    </tr>
+                                    <?php 
+                                        }
+                                    ?>
+                                    <tr>
+                                        <th style="font-size:15px"> groupe </th>
+                                        <td style="font-size:15px"><?php echo $row["id_groupe"];?></td>
+                                    </tr>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div><!--/card-->
+                    </div><!--.col (une formation) /--> 
+                    <?php
+                        }//fin de la boucle des formations
+                    ?>  
+                    </div><!--.row/--> 
+                </div><!--.container/-->
+                <?php 
+                    }//fin else
+                ?>
         </div><!--.wallpaper/-->
         <footer class="page-footer orange" style="width:100%;"><!--footer-->
           <div class="container">
