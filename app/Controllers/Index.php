@@ -207,7 +207,7 @@ class Index extends Controller
         {
             echo "entrer juste chiffre/lettre/_";
         }
-        else if(!self::verifier_utilisateur($_POST["nom_utilisateur"]))
+        else if(!self::verifier_utilisateur_1($_POST["nom_utilisateur"]))
         {
             echo "nom d'utilisateur valide";
         }
